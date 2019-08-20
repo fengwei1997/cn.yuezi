@@ -11,8 +11,9 @@
     <title>Title</title>
 </head>
 <body>
-<form method="get" action="/login">
-    用户名：<input type="text" name="username" id="username" /><br/>
+<form method="get" action="/doLogin">
+
+    用户名：<input type="text" name="username" id="username" /><span style="color: red">${loginError}</span><br/>
     密  码：<input type="text" name="password" id="password" /><br/>
     <input type="submit" value="提交"/><br/>
 </form>
