@@ -16,7 +16,7 @@ public class ServiceController {
     private ServiceService seriviceService;
 
     @RequestMapping(path = "/selectAll")
-    public ArrayList<Service> selectAll(Service service){
+    public ArrayList<Service> selectAll(){
         ArrayList<Service> list=seriviceService.selectAllService();
         return list;
     }
