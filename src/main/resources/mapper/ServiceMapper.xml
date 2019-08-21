@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.dao.ServiceDao">
+    <insert id="add">
+        insert into service(name,image,price,time,desc) values (#{name},#{image},#{price},#{time},#{desc})
+    </insert>
+
+    <select id="getById" resultType="cn.bean.Service">
+        select * from Service where id=#{id}
+    </select>
+
+    <select id="selectAllService" resultType="cn.bean.Service">
+        select * from Service
+    </select>
+</mapper>

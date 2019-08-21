@@ -4,23 +4,25 @@ import cn.bean.User;
 import cn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(path = "/login")
-    public String login(User user){
+    @RequestMapping(path = "/doLogin")
+    public String login(User user, ModelMap modelMap, HttpServletRequest request){
         System.out.println("user:"+user);
-        boolean flag = userService.add(user);
-        if(flag){
-            System.out.println(user);
+        User user1 = userService.login(user);
+        System.out.println(user1);
+        if(user1!=null){//登陆成功进入index页面
             return "index";
-        }else {
-            System.out.println("null");
-            return "login";
         }
+        modelMap.addAttribute("loginError","登陆失败，请重新登录");
+        return "user/login"; //默认是请求转发
     }
 }
