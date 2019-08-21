@@ -9,12 +9,13 @@
         http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
-
-<!--    <context:annotation-config/>-->
+    <!--  启动注解  -->
+    <context:annotation-config/>
+    <!--  包扫描  -->
     <context:component-scan base-package="cn">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-    <!--    <context:component-scan base-package="cn"/>-->
+    <!-- dataSource -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <property name="driverClass" value="com.mysql.cj.jdbc.Driver"/>
         <property name="user" value="root"/>
@@ -22,28 +23,21 @@
         <property name="jdbcUrl"
                   value="jdbc:mysql://turboboost.cn:3306/yuezi?useUnicode=true&amp;characterEncoding=UTF-8"/>
     </bean>
+    <!-- 配置sqlSessionFactory  -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
-        <property name="mapperLocations" value="classpath:cn/mapper/*.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
-
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"/>
-        <constructor-arg name="executorType" value="BATCH"/>
+    <!-- 扫描Dao接口 -->
+    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="cn.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
-
-<!--    <bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-<!--        <property name="basePackage" value="cn.dao"/>-->
-<!--        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>-->
-<!--    </bean>-->
-
+    <!-- 事务管理 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
+    <!-- 事务注解 -->
     <tx:annotation-driven/>
-
-
-    <mybatis-spring:scan base-package="cn.dao"/>
 </beans>

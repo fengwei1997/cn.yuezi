@@ -5,22 +5,26 @@ import cn.dao.UserDao;
 import cn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
 
-import javax.servlet.http.HttpServletRequest;
-
-@Service
+@Service("userService")
 public class UserServiceImp implements UserService {
 
     @Autowired
     private UserDao userDao;
+
+
     @Override
     public User login(User user) {
-        User u=userDao.login(user);
-        if(u!=null){
-            return u;
-        }
+        return userDao.login(user);
+    }
 
-        return null;
+    @Override
+    public boolean add(User user) {
+        return userDao.add(user);
+    }
+
+    @Override
+    public boolean test(User user) {
+        return userDao.test(user);
     }
 }

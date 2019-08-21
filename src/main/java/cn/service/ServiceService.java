@@ -1,9 +1,11 @@
-package cn.dao;
+package cn.service;
 
 import cn.bean.Service;
+
 import java.util.ArrayList;
 
-public interface ServiceDao {
+public interface ServiceService {
+
     //添加服务
     boolean addService(Service service);
     //删除服务
