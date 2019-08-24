@@ -3,19 +3,15 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cn.dao.UserDao">
-    <select id="login" parameterType="cn.bean.User"  resultType="cn.bean.User">
-        select * from user where username=#{username} and password=#{password}
-    </select>
-
-    <insert id="add">
-        insert into user(username, password) values (#{username},#{password})
+    <insert id="addUser"  >
+        insert into user(username, password,uid) values (#{username},#{password},#{uid})
     </insert>
 
     <select id="getById" resultType="cn.bean.User">
         select * from user where id=#{id}
     </select>
 
-    <select id="get" resultType="cn.bean.User">
+    <select id="login" parameterType="cn.bean.User" resultType="cn.bean.User">
         select * from user where username=#{username} and password=#{password}
     </select>
 </mapper>

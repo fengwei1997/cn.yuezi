@@ -1,9 +1,30 @@
 package cn.bean;
 
+import java.util.Date;
+
 public class User {
     private int id;
     private String username;
     private String password;
+    private Date createTime;
+    private int uid;
+
+
+    public int getUid() {
+        return uid;
+    }
+
+    public void setUid(int uid) {
+        this.uid = uid;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public int getId() {
         return id;
@@ -35,6 +56,8 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", createTime=" + createTime +
+                ", uid=" + uid +
                 '}';
     }
 }
