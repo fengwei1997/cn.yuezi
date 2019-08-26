@@ -24,14 +24,14 @@
 <body>
 <div class="container">
     <div class="center">
-        <form>
+        <form action="/doLogin">
             <div class="form-group">
                 <label for="exampleInputEmail1">用户名</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="用户名">
+                <input type="email" class="form-control" id="exampleInputEmail1" name="username" placeholder="用户名">
             </div>
             <div class="form-group">
                 <label for="exampleInputPassword1">密码</label>
-                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="密码">
+                <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="密码">
             </div>
             <div class="checkbox">
                 <div class="row">

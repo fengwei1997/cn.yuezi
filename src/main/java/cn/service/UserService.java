@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service
 public interface UserService {
     //用户登录
     User login(User user);
@@ -15,4 +14,6 @@ public interface UserService {
     boolean register(User user, UserInfo userInfo);
     //测试
     boolean test(User user);
+    //
+    void show();
 }

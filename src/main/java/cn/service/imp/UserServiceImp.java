@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-@Service("userService")
+@Service
 public class UserServiceImp implements UserService {
 
     @Autowired
@@ -28,18 +28,20 @@ public class UserServiceImp implements UserService {
     @Override
     public boolean register(User user, UserInfo userInfo) {
         boolean flag=userInfoDao.addUserInfo(userInfo);
-        System.out.println(userInfo);//userInfo的主键被获取到了
-        user.setUid(userInfo.getId());
+        System.out.println(userInfo);
+        user.setUid(userInfo.getId());//获取到userInfo在数据库中生成的主键id，添加外键id
         boolean flag2=userDao.addUser(user);
-        if(flag&flag2){
-            return true;
-        }
-        return false;
+        return flag&flag2?true:false;
     }
 
 
     @Override
     public boolean test(User user) {
         return userDao.test(user);
+    }
+
+    @Override
+    public void show() {
+        System.out.println("show方法");
     }
 }

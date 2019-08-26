@@ -2,6 +2,12 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--动态代理开发规则:
+1.namespace必须是接口的全路径名
+2.接口的方法名必须与sql di 一致
+3.接口的入参与parameterType类型一致
+4.接口的返回值必须与resultType类型一致
+-->
 <mapper namespace="cn.dao.UserInfoDao">
     <insert id="addUserInfo"  useGeneratedKeys="true" keyProperty="id" parameterType="cn.bean.UserInfo">
         insert into userinfo(name,phone,email,wayId,otherPhone) value(#{name},#{phone},#{email},#{wayId},#{otherPhone})

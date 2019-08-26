@@ -16,7 +16,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping(path = "/doLogin")
+    @RequestMapping("/doLogin")
     public String login(User user, ModelMap modelMap, HttpServletRequest request){
         System.out.println("user:"+user);
         User user1 = userService.login(user);
